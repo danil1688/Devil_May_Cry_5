@@ -1,0 +1,1830 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Devil May Cry 5 — Персонажі</title>
+  
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Animate.css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  
+  <style>
+    :root {
+      --primary-red: #c41e3a;
+      --primary-glow: #ff2a4d;
+      --dark-bg: #0d0d0d;
+      --card-bg: #1a1a1a;
+      --text-light: #f8f9fa;
+      --accent-gold: #ffcc00;
+    }
+    
+    body {
+      background-color: var(--dark-bg);
+      color: var(--text-light);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      overflow-x: hidden;
+    }
+    
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 12px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      background: var(--dark-bg);
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background: var(--primary-red);
+      border-radius: 6px;
+      border: 2px solid var(--dark-bg);
+      animation: scrollGlow 2s ease-in-out infinite alternate;
+    }
+    
+    @keyframes scrollGlow {
+      0% { box-shadow: 0 0 5px var(--primary-red); }
+      100% { box-shadow: 0 0 15px var(--primary-glow); }
+    }
+    
+    /* Navigation */
+    .navbar {
+      background: linear-gradient(135deg, rgba(26, 26, 26, 0.95), rgba(13, 13, 13, 0.98)) !important;
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(196, 30, 58, 0.3);
+      box-shadow: 0 2px 20px rgba(196, 30, 58, 0.2);
+      animation: navbarSlideDown 0.8s ease-out;
+      padding: 0.8rem 0;
+    }
+    
+    @keyframes navbarSlideDown {
+      from { transform: translateY(-100%); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    
+    .navbar-brand {
+      color: var(--primary-red) !important;
+      font-weight: bold;
+      font-size: 1.5rem;
+      text-shadow: 0 0 10px rgba(196, 30, 58, 0.5);
+      position: relative;
+      animation: logoPulse 3s ease-in-out infinite;
+      display: flex;
+      align-items: center;
+    }
+    
+    @keyframes logoPulse {
+      0%, 100% { transform: scale(1); text-shadow: 0 0 10px rgba(196, 30, 58, 0.5); }
+      50% { transform: scale(1.05); text-shadow: 0 0 20px rgba(255, 42, 77, 0.8); }
+    }
+    
+    .nav-link {
+      color: var(--text-light) !important;
+      position: relative;
+      padding: 8px 16px !important;
+      margin: 0 4px;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+      font-weight: 500;
+      animation: fadeInRight 0.6s ease-out backwards;
+    }
+    
+    .nav-link:nth-child(1) { animation-delay: 0.1s; }
+    .nav-link:nth-child(2) { animation-delay: 0.2s; }
+    .nav-link:nth-child(3) { animation-delay: 0.3s; }
+    .nav-link:nth-child(4) { animation-delay: 0.4s; }
+    .nav-link:nth-child(5) { animation-delay: 0.5s; }
+    .nav-link:nth-child(6) { animation-delay: 0.6s; }
+    
+    @keyframes fadeInRight {
+      from { opacity: 0; transform: translateX(30px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    
+    .nav-link::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(196, 30, 58, 0.1), rgba(255, 204, 0, 0.1));
+      border-radius: 5px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    .nav-link:hover::before, .nav-link.active::before {
+      opacity: 1;
+    }
+    
+    .nav-link.active, .nav-link:hover {
+      color: var(--primary-red) !important;
+      text-shadow: 0 0 8px rgba(196, 30, 58, 0.7);
+      animation: linkShake 0.3s ease;
+    }
+    
+    @keyframes linkShake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-2px); }
+      75% { transform: translateX(2px); }
+    }
+    
+    .dropdown-menu {
+      background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+      border: 1px solid rgba(196, 30, 58, 0.3);
+      border-radius: 10px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+    
+    .dropdown-item {
+      color: var(--text-light);
+      transition: all 0.3s ease;
+    }
+    
+    .dropdown-item:hover {
+      background: rgba(196, 30, 58, 0.2);
+      color: var(--primary-red);
+    }
+    
+    .navbar-toggler {
+      border: 1px solid rgba(196, 30, 58, 0.3);
+      padding: 4px 8px;
+    }
+    
+    .navbar-toggler:focus {
+      box-shadow: 0 0 0 2px rgba(196, 30, 58, 0.5);
+    }
+    
+    .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.8%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    }
+
+    /* Hero Section */
+    .hero-section {
+      background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.9)), 
+                  url('https://images.alphacoders.com/990/990728.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      min-height: 80vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      animation: heroZoom 20s linear infinite;
+      margin-top: 76px;
+    }
+    
+    @keyframes heroZoom {
+      0% { background-size: 100%; }
+      50% { background-size: 110%; }
+      100% { background-size: 100%; }
+    }
+    
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at 50% 50%, rgba(196, 30, 58, 0.1) 0%, transparent 50%);
+      animation: pulse-glow 4s ease-in-out infinite;
+    }
+    
+    @keyframes pulse-glow {
+      0%, 100% { opacity: 0.3; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(1.1); }
+    }
+    
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      animation: contentSlideUp 1s ease-out 0.5s backwards;
+    }
+    
+    @keyframes contentSlideUp {
+      from { opacity: 0; transform: translateY(50px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .hero-content h1 {
+      text-shadow: 0 0 20px rgba(196, 30, 58, 0.8);
+      animation: text-glow 2s ease-in-out infinite alternate, titleFloat 6s ease-in-out infinite;
+    }
+    
+    @keyframes text-glow {
+      from { text-shadow: 0 0 20px rgba(196, 30, 58, 0.8); }
+      to { text-shadow: 0 0 30px rgba(255, 42, 77, 1), 0 0 40px rgba(255, 42, 77, 0.6); }
+    }
+    
+    @keyframes titleFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    
+    .hero-content p {
+      animation: fadeInUp 1s ease-out 0.8s backwards;
+    }
+    
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    /* Page Navigation */
+    .page-navigation {
+      background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+      padding: 20px 0;
+      border-bottom: 1px solid rgba(196, 30, 58, 0.2);
+      position: sticky;
+      top: 76px;
+      z-index: 100;
+    }
+
+    .nav-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .page-navigation .nav-link {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      color: var(--text-light);
+      padding: 15px 25px;
+      border-radius: 10px;
+      transition: all 0.3s ease;
+      background: rgba(196, 30, 58, 0.1);
+      border: 1px solid rgba(196, 30, 58, 0.2);
+    }
+
+    .page-navigation .nav-link i {
+      font-size: 1.5rem;
+      margin-bottom: 8px;
+      color: var(--primary-red);
+    }
+
+    .page-navigation .nav-link.active, 
+    .page-navigation .nav-link:hover {
+      background: rgba(196, 30, 58, 0.3);
+      border-color: var(--primary-red);
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(196, 30, 58, 0.3);
+    }
+    
+    /* Section Titles */
+    .section-title {
+      color: var(--primary-red);
+      position: relative;
+      padding-bottom: 20px;
+      margin-bottom: 40px;
+      text-shadow: 0 0 10px rgba(196, 30, 58, 0.5);
+      animation: titleSlideIn 0.8s ease-out;
+    }
+    
+    @keyframes titleSlideIn {
+      from { opacity: 0; transform: translateX(-50px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 80px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary-red), var(--accent-gold));
+      box-shadow: 0 0 10px rgba(196, 30, 58, 0.5);
+      animation: lineExtend 1s ease-out 0.5s backwards;
+    }
+    
+    @keyframes lineExtend {
+      from { width: 0; opacity: 0; }
+      to { width: 80px; opacity: 1; }
+    }
+    
+    .text-center .section-title::after {
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    
+    /* Cards */
+    .character-card, .weapon-card, .story-card, .feature-card {
+      background: linear-gradient(145deg, #1e1e1e, #2a2a2a);
+      border-radius: 15px;
+      padding: 25px;
+      height: 100%;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(196, 30, 58, 0.2);
+      position: relative;
+      overflow: hidden;
+      animation: cardFloat 6s ease-in-out infinite;
+    }
+    
+    @keyframes cardFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+    
+    .character-card::before, .weapon-card::before, .story-card::before, .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(196, 30, 58, 0.1), transparent);
+      transition: left 0.5s;
+    }
+    
+    .character-card:hover::before, .weapon-card:hover::before, .story-card:hover::before, .feature-card:hover::before {
+      left: 100%;
+    }
+    
+    .character-card:hover, .weapon-card:hover, .story-card:hover, .feature-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      border-color: rgba(196, 30, 58, 0.5);
+      box-shadow: 0 10px 30px rgba(196, 30, 58, 0.3);
+      animation: cardHover 0.3s ease;
+    }
+    
+    @keyframes cardHover {
+      0% { transform: translateY(-10px) scale(1); }
+      50% { transform: translateY(-10px) scale(1.05); }
+      100% { transform: translateY(-10px) scale(1.02); }
+    }
+    
+    /* Character Cards */
+    .character-image {
+      height: 300px;
+      overflow: hidden;
+      border-radius: 10px;
+      position: relative;
+      margin-bottom: 20px;
+    }
+    
+    .character-image::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 50%;
+      background: linear-gradient(transparent, rgba(13, 13, 13, 0.9));
+    }
+    
+    .character-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+      animation: characterFloat 8s ease-in-out infinite;
+    }
+    
+    @keyframes characterFloat {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-5px) scale(1.02); }
+    }
+    
+    .character-card:hover .character-image img {
+      transform: scale(1.1);
+      animation: characterHover 0.5s ease;
+    }
+    
+    @keyframes characterHover {
+      0% { transform: scale(1.1); }
+      50% { transform: scale(1.15); }
+      100% { transform: scale(1.1); }
+    }
+    
+    .character-badge {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: var(--primary-red);
+      color: white;
+      padding: 5px 15px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: bold;
+      z-index: 2;
+      animation: badgePulse 3s ease-in-out infinite;
+    }
+    
+    @keyframes badgePulse {
+      0%, 100% { box-shadow: 0 0 5px rgba(196, 30, 58, 0.3); }
+      50% { box-shadow: 0 0 15px rgba(255, 42, 77, 0.5); }
+    }
+    
+    /* Character Stats */
+    .character-stats {
+      margin: 15px 0;
+    }
+    
+    .stat {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+    
+    .stat-label {
+      color: #aaa;
+    }
+    
+    .stat-value {
+      color: var(--text-light);
+    }
+    
+    .character-features {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 15px;
+    }
+    
+    .feature-tag {
+      background: rgba(196, 30, 58, 0.2);
+      color: var(--primary-red);
+      padding: 4px 10px;
+      border-radius: 15px;
+      font-size: 0.8rem;
+      border: 1px solid rgba(196, 30, 58, 0.3);
+    }
+    
+    /* Weapons Filter */
+    .weapons-filter {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 30px;
+    }
+    
+    .filter-btn {
+      background: transparent;
+      border: 1px solid rgba(196, 30, 58, 0.3);
+      color: var(--text-light);
+      padding: 10px 20px;
+      border-radius: 30px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    
+    .filter-btn.active, .filter-btn:hover {
+      background: var(--primary-red);
+      border-color: var(--primary-red);
+      box-shadow: 0 0 15px rgba(196, 30, 58, 0.5);
+    }
+    
+    /* Weapon Cards */
+    .weapon-character {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      background: rgba(0, 0, 0, 0.7);
+      color: var(--text-light);
+      padding: 5px 10px;
+      border-radius: 15px;
+      font-size: 0.8rem;
+      z-index: 2;
+    }
+    
+    .weapon-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+    
+    .weapon-stats {
+      margin-top: 15px;
+    }
+    
+    .stat-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    
+    .stat-stars {
+      display: flex;
+    }
+    
+    .star {
+      color: var(--accent-gold);
+      margin-right: 2px;
+    }
+    
+    .star.empty {
+      color: #555;
+    }
+    
+    /* Story Section */
+    .story-section {
+      background: linear-gradient(135deg, #1a1a1a, #0d0d0d);
+    }
+    
+    .story-card {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+    
+    .story-character {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    
+    .story-character img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--primary-red);
+      margin-bottom: 10px;
+    }
+    
+    .story-highlights {
+      margin-top: 20px;
+    }
+    
+    .highlight {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    
+    .highlight i {
+      color: var(--primary-red);
+      margin-right: 10px;
+      width: 20px;
+    }
+    
+    /* Footer with Burning Effect */
+    footer {
+      background: linear-gradient(135deg, #1a1a1a, #0d0d0d);
+      border-top: 2px solid var(--primary-red);
+      position: relative;
+      overflow: hidden;
+      animation: footerSlideUp 1s ease-out;
+    }
+    
+    @keyframes footerSlideUp {
+      from { opacity: 0; transform: translateY(50px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--primary-red), var(--accent-gold), var(--primary-red), transparent);
+      animation: burning 3s linear infinite;
+    }
+    
+    @keyframes burning {
+      0% { background-position: -200px 0; }
+      100% { background-position: 200px 0; }
+    }
+    
+    .footer-logo h3 {
+      color: var(--primary-red);
+      text-shadow: 0 0 10px rgba(196, 30, 58, 0.7);
+      animation: footerLogoPulse 4s ease-in-out infinite;
+    }
+    
+    @keyframes footerLogoPulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+    
+    .footer-links a {
+      color: #aaa;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      position: relative;
+      padding-left: 0;
+      display: inline-block;
+      animation: linkFadeIn 0.6s ease-out backwards;
+    }
+    
+    .footer-links a:nth-child(1) { animation-delay: 0.1s; }
+    .footer-links a:nth-child(2) { animation-delay: 0.2s; }
+    .footer-links a:nth-child(3) { animation-delay: 0.3s; }
+    .footer-links a:nth-child(4) { animation-delay: 0.4s; }
+    
+    @keyframes linkFadeIn {
+      from { opacity: 0; transform: translateX(-20px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    
+    .footer-links a::before {
+      content: '▶';
+      position: absolute;
+      left: -15px;
+      opacity: 0;
+      color: var(--primary-red);
+      transition: all 0.3s ease;
+    }
+    
+    .footer-links a:hover {
+      color: var(--primary-red);
+      padding-left: 15px;
+      text-shadow: 0 0 8px rgba(196, 30, 58, 0.5);
+      animation: linkShake 0.3s ease;
+    }
+    
+    .footer-links a:hover::before {
+      opacity: 1;
+    }
+    
+    /* Burning Social Icons */
+    .social-icons {
+      display: flex;
+      gap: 15px;
+    }
+    
+    .social-icons a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, #2a2a2a, #1f1f1f);
+      border-radius: 50%;
+      color: var(--text-light);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(196, 30, 58, 0.3);
+      animation: socialIconFloat 6s ease-in-out infinite;
+    }
+    
+    @keyframes socialIconFloat {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-5px) rotate(5deg); }
+    }
+    
+    .social-icons a:nth-child(1) { animation-delay: 0s; }
+    .social-icons a:nth-child(2) { animation-delay: 0.2s; }
+    .social-icons a:nth-child(3) { animation-delay: 0.4s; }
+    .social-icons a:nth-child(4) { animation-delay: 0.6s; }
+    
+    .social-icons a::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(196, 30, 58, 0.4), transparent);
+      transition: left 0.5s;
+    }
+    
+    .social-icons a:hover {
+      background: linear-gradient(135deg, var(--primary-red), #a01830);
+      color: white;
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(196, 30, 58, 0.6);
+      border-color: var(--primary-glow);
+      animation: socialIconHover 0.5s ease;
+    }
+    
+    @keyframes socialIconHover {
+      0% { transform: translateY(-5px) scale(1); }
+      50% { transform: translateY(-5px) scale(1.2); }
+      100% { transform: translateY(-5px) scale(1); }
+    }
+    
+    .social-icons a:hover::before {
+      left: 100%;
+    }
+    
+    .footer-bottom {
+      border-top: 1px solid rgba(196, 30, 58, 0.3);
+      position: relative;
+      animation: footerBottomFade 1s ease-out 0.5s backwards;
+    }
+    
+    @keyframes footerBottomFade {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    .footer-bottom::before {
+      content: '';
+      position: absolute;
+      top: -1px;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--primary-red), transparent);
+    }
+    
+    /* Particle Background Effect */
+    .particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+    }
+    
+    .particle {
+      position: absolute;
+      background: var(--primary-red);
+      border-radius: 50%;
+      opacity: 0.3;
+      animation: float 6s infinite linear;
+    }
+    
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.3;
+      }
+      90% {
+        opacity: 0.3;
+      }
+      100% {
+        transform: translateY(-100px) rotate(360deg);
+        opacity: 0;
+      }
+    }
+    
+    /* Section Entrance Animations */
+    .section-animate {
+      animation: sectionSlideUp 0.8s ease-out;
+    }
+    
+    @keyframes sectionSlideUp {
+      from { opacity: 0; transform: translateY(50px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero-content h1 {
+        font-size: 2.5rem;
+      }
+      
+      .nav-links {
+        flex-direction: column;
+        gap: 10px;
+      }
+      
+      .weapons-filter {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .hero-section {
+        margin-top: 70px;
+      }
+      
+      .page-navigation {
+        top: 70px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Particles Background -->
+  <div class="particles" id="particles"></div>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <i class="fas fa-skull-crossbones me-2"></i>Devil May Cry 5
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html"><i class="fas fa-home me-1"></i> Головна</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="development.html"><i class="fas fa-code me-1"></i> Історія</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link active dropdown-toggle" href="characters.html" id="charactersDropdown" role="button" data-bs-toggle="dropdown">
+              <i class="fas fa-users me-1"></i> Персонажі
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#list-characters">Список персонажів</a></li>
+              <li><a class="dropdown-item" href="#character-stories">Історії персонажів</a></li>
+              <li><a class="dropdown-item" href="#character-weapons">Зброя персонажів</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="download.html"><i class="fas fa-download me-1"></i> Завантажити</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="company.html"><i class="fas fa-building me-1"></i> Компанія</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="reviews.html"><i class="fas fa-comments me-1"></i> Відгуки</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section для Персонажів -->
+  <section class="hero-section">
+    <div class="container">
+      <div class="row justify-content-center text-center">
+        <div class="col-lg-8">
+          <div class="hero-content">
+            <h1 class="display-4 fw-bold mb-4">Персонажі Devil May Cry 5</h1>
+            <p class="lead mb-4">
+              Зустріньте легендарних персонажів, які оживляють світ Devil May Cry. 
+              Дослідіть їхні унікальні здібності, складні історії та бойові стилі, 
+              що роблять кожного з них незабутнім у цій епічній битві між демонами та людьми.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Навігація по сторінці -->
+  <section class="page-navigation">
+    <div class="container">
+      <div class="nav-links">
+        <a href="#list-characters" class="nav-link active">
+          <i class="fas fa-list"></i>
+          <span>Список</span>
+        </a>
+        <a href="#character-stories" class="nav-link">
+          <i class="fas fa-book"></i>
+          <span>Історії</span>
+        </a>
+        <a href="#character-weapons" class="nav-link">
+          <i class="fas fa-gun"></i>
+          <span>Зброя</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Список персонажів -->
+  <section id="list-characters" class="py-5 section-animate">
+    <div class="container">
+      <h2 class="section-title text-center">Список персонажів</h2>
+      <p class="text-center text-muted mb-5">
+        Четверо мисливців на демонів, кожен з унікальним стилем бою та характером. 
+        Виберіть свого улюбленця та освоюйте його бойові можливості.
+      </p>
+
+      <div class="row g-4">
+        <!-- Неро -->
+        <div class="col-md-6 col-lg-3">
+          <div class="character-card">
+            <div class="character-image">
+              <img src="poto/index/Неро.jpg" alt="Неро">
+              <div class="character-badge">Головний герой</div>
+            </div>
+            <div class="character-info">
+              <h3>Неро</h3>
+              <div class="character-stats">
+                <div class="stat">
+                  <span class="stat-label">Стиль бою:</span>
+                  <span class="stat-value">Швидкий та технічний</span>
+                </div>
+                <div class="stat">
+                  <span class="stat-label">Складність:</span>
+                  <span class="stat-value">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="far fa-star"></i>
+                  </span>
+                </div>
+              </div>
+              <p>Молодий, але впертий мисливець на демонів. Володіє унікальною кібернетичною рукою Devil Breaker.</p>
+              <div class="character-features">
+                <span class="feature-tag">Devil Breaker</span>
+                <span class="feature-tag">Red Queen</span>
+                <span class="feature-tag">Blue Rose</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Данте -->
+        <div class="col-md-6 col-lg-3">
+          <div class="character-card">
+            <div class="character-image">
+              <img src="poto/index/Данте.png" alt="Данте">
+              <div class="character-badge">Легенда</div>
+            </div>
+            <div class="character-info">
+              <h3>Данте</h3>
+              <div class="character-stats">
+                <div class="stat">
+                  <span class="stat-label">Стиль бою:</span>
+                  <span class="stat-value">Універсальний та стильний</span>
+                </div>
+                <div class="stat">
+                  <span class="stat-label">Складність:</span>
+                  <span class="stat-value">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                  </span>
+                </div>
+              </div>
+              <p>Син легендарного Спарди. Класичний герой серії з різноманітною зброєю та стилями бою.</p>
+              <div class="character-features">
+                <span class="feature-tag">4 стилі</span>
+                <span class="feature-tag">10+ зброй</span>
+                <span class="feature-tag">Devil Trigger</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- V -->
+        <div class="col-md-6 col-lg-3">
+          <div class="character-card">
+            <div class="character-image">
+              <img src="poto/index/V.webp" alt="V">
+              <div class="character-badge">Загадковий</div>
+            </div>
+            <div class="character-info">
+              <h3>V</h3>
+              <div class="character-stats">
+                <div class="stat">
+                  <span class="stat-label">Стиль бою:</span>
+                  <span class="stat-value">Тактичний та стратегічний</span>
+                </div>
+                <div class="stat">
+                  <span class="stat-label">Складність:</span>
+                  <span class="stat-value">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="far fa-star"></i>
+                  </span>
+                </div>
+              </div>
+              <p>Таємничий маг, який не воює самостійно, а викликає демонічних союзників.</p>
+              <div class="character-features">
+                <span class="feature-tag">Грифон</span>
+                <span class="feature-tag">Тінь</span>
+                <span class="feature-tag">Кошмар</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Вергілій -->
+        <div class="col-md-6 col-lg-3">
+          <div class="character-card">
+            <div class="character-image">
+              <img src="poto/index/Вергілій.webp" alt="Вергілій">
+              <div class="character-badge">Бос</div>
+            </div>
+            <div class="character-info">
+              <h3>Вергілій</h3>
+              <div class="character-stats">
+                <div class="stat">
+                  <span class="stat-label">Стиль бою:</span>
+                  <span class="stat-value">Точний та смертоносний</span>
+                </div>
+                <div class="stat">
+                  <span class="stat-label">Складність:</span>
+                  <span class="stat-value">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                  </span>
+                </div>
+              </div>
+              <p>Брат-близнюк Данте. Холоднокровний і одержимий ідеєю абсолютної сили.</p>
+              <div class="character-features">
+                <span class="feature-tag">Yamato</span>
+                <span class="feature-tag">Summoned Swords</span>
+                <span class="feature-tag">Concentration</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Історії персонажів -->
+  <section id="character-stories" class="py-5 bg-dark section-animate">
+    <div class="container">
+      <h2 class="section-title text-center">Історії персонажів</h2>
+      
+      <div class="row g-4">
+        <!-- Неро -->
+        <div class="col-md-6">
+          <div class="story-card">
+            <div class="story-character">
+              <img src="poto/index/Неро.jpg" alt="Неро">
+              <h4>Неро</h4>
+            </div>
+            <div class="story-content">
+              <h3>Шлях до зрілості</h3>
+              <p>Колишній учень Данте, Неро пережив втрату руки, але знайшов нову силу й упевненість у власному призначенні. Його шлях — це шлях дорослішання та прийняття відповідальності.</p>
+              <p>Від безтурботного юнака до зрілого мисливця на демонів - Неро пройшов важкий шлях самопізнання. Його найбільшою мотивацією є захист тих, кого він любить, і пошук власного місця у світі.</p>
+              <div class="story-highlights">
+                <div class="highlight">
+                  <i class="fas fa-heart"></i>
+                  <span>Мотивація: захист близьких</span>
+                </div>
+                <div class="highlight">
+                  <i class="fas fa-fist-raised"></i>
+                  <span>Сила: Devil Breaker</span>
+                </div>
+                <div class="highlight">
+                  <i class="fas fa-search"></i>
+                  <span>Мета: самопізнання</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Данте -->
+        <div class="col-md-6">
+          <div class="story-card">
+            <div class="story-character">
+              <img src="poto/index/Данте.png" alt="Данте">
+              <h4>Данте</h4>
+            </div>
+            <div class="story-content">
+              <h3>Вічний захисник</h3>
+              <p>Багаторічний захисник людства, який не втрачає почуття гумору навіть у найтемніші часи. У цій частині він стикається з найнебезпечнішими демонами та власним минулим.</p>
+              <p>Данте - символ надії для людства та гроза для демонічного світу, що поєднує в собі могутність демона і серце людини. Його життя - це постійна боротьба з власною долею.</p>
+              <div class="story-highlights">
+                <div class="highlight">
+                  <i class="fas fa-shield-alt"></i>
+                  <span>Роль: захисник людства</span>
+                </div>
+                <div class="highlight">
+                  <i class="fas fa-gem"></i>
+                  <span>Спадок: син Спарди</span>
+                </div>
+                <div class="highlight">
+                  <i class="fas fa-theater-masks"></i>
+                  <span>Характер: саркастичний</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- V -->
+        <div class="col-md-6">
+          <div class="story-card">
+            <div class="story-character">
+              <img src="poto/index/V.webp" alt="V">
+              <h4>V</h4>
+            </div>
+            <div class="story-content">
+              <h3>Загадковий поет</h3>
+              <p>Його справжнє ім'я приховане та пов'язане з долею братів Спарди. V прагне завершити стародавній конфлікт, проте ціна може виявитися надто високою.</p>
+              <p>Загадковий поет з тінями минулого, що переслідують його на кожному кроці, V несе в собі таємницю, яка змінить все. Його слова мають силу, а дії - наслідки.</p>
+              <div class="story-highlights">
+                <div class="highlight">
+                  <i class="fas fa-mask"></i>
+                  <span>Статус: загадковий</span>
+                </div>
+                <div class="highlight">
+                  <i class="fas fa-book"></i>
+                  <span>Здібність: поезія</span>
+                </div>
+                <div class="highlight">
+                  <i class="fas fa-puzzle-piece"></i>
+                  <span>Мета: розгадати таємницю</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Вергілій -->
+        <div class="col-md-6">
+          <div class="story-card">
+            <div class="story-character">
+              <img src="poto/index/Вергілій.webp" alt="Вергілій">
+              <h4>Вергілій</h4>
+            </div>
+            <div class="story-content">
+              <h3>Одержимість силою</h3>
+              <p>Старший брат Данте, який заради сили пожертвував людяністю. Повернення Вергілія стає каталізатором фінальної битви та випробуванням для всіх героїв.</p>
+              <p>Його холодний розум і непохитна воля роблять його найнебезпечнішим противником, але чи є ще щось людське в ньому? Його шлях - це постійне прагнення до сили.</p>
+              <div class="story-highlights">
+                <div class="highlight">
+                  <i class="fas fa-crown"></i>
+                  <span>Статус: старший брат</span>
+                </div>
+                <div class="highlight">
+                  <i class="fas fa-bolt"></i>
+                  <span>Мотивація: сила</span>
+                </div>
+                <div class="highlight">
+                  <i class="fas fa-balance-scale"></i>
+                  <span>Конфлікт: з Данте</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Зброя персонажів -->
+<section id="character-weapons" class="py-5 section-animate">
+  <div class="container">
+    <h2 class="section-title text-center">Зброя та здібності</h2>
+    <p class="text-center text-muted mb-5">
+      Кожен герой має унікальний арсенал і власний рівень швидкості, сили та складності володіння.
+      Оберіть стиль, що підходить саме вам.
+    </p>
+
+    <!-- Фільтр -->
+    <div class="weapons-filter">
+      <button class="filter-btn active" data-filter="all">Вся зброя</button>
+      <button class="filter-btn" data-filter="nero">Неро</button>
+      <button class="filter-btn" data-filter="dante">Данте</button>
+      <button class="filter-btn" data-filter="v">V</button>
+      <button class="filter-btn" data-filter="vergil">Вергілій</button>
+    </div>
+
+    <div class="row g-4" id="weapons-grid">
+      
+      <!-- ===== НЕРО ===== -->
+      <div class="col-md-6 col-lg-4 weapon-card" data-character="nero">
+        <span class="weapon-character">Неро</span>
+        <img src="poto/person/Red Queen.jpg" alt="Red Queen">
+        <div class="weapon-info">
+          <h4>Red Queen</h4>
+          <p>Експериментальний меч із системою згоряння, що підсилює атаки. Може розігріватися для потужних ударів.</p>
+          <div class="weapon-stats">
+            <div class="stat-item">
+              <span class="stat-label">Швидкість</span>
+              <div class="stat-stars">
+                <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star empty">★</span>
+              </div>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Сила</span>
+              <div class="stat-stars">
+                <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star empty">★</span><span class="star empty">★</span>
+              </div>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Складність</span>
+              <div class="stat-stars">
+                <span class="star">★</span><span class="star">★</span><span class="star empty">★</span><span class="star empty">★</span><span class="star empty">★</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4 weapon-card" data-character="nero">
+        <span class="weapon-character">Неро</span>
+        <img src="poto/person/Blue Rose.webp" alt="Blue Rose">
+        <div class="weapon-info">
+          <h4>Blue Rose</h4>
+          <p>Модифікований револьвер для потужних заряджених пострілів. Може стріляти пострілами з подвійною силою.</p>
+          <div class="weapon-stats">
+            <div class="stat-item">
+              <span class="stat-label">Швидкість</span>
+              <div class="stat-stars">
+                <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+              </div>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Сила</span>
+              <div class="stat-stars">
+                <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star empty">★</span><span class="star empty">★</span>
+              </div>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Складність</span>
+              <div class="stat-stars">
+                <span class="star">★</span><span class="star">★</span><span class="star empty">★</span><span class="star empty">★</span><span class="star empty">★</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4 weapon-card" data-character="nero">
+        <span class="weapon-character">Неро</span>
+        <img src="poto/person/Devil Breaker.webp" alt="Devil Breaker">
+        <div class="weapon-info">
+          <h4>Devil Breaker</h4>
+          <p>Кібернетична рука з різними модулями та унікальними здібностями. Кожен тип має особливі функції.</p>
+          <div class="weapon-stats">
+            <div class="stat-item">
+              <span class="stat-label">Швидкість</span>
+              <div class="stat-stars">
+                <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star empty">★</span><span class="star empty">★</span>
+              </div>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Сила</span>
+              <div class="stat-stars">
+                <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star empty">★</span>
+              </div>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Складність</span>
+              <div class="stat-stars">
+                <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star empty">★</span><span class="star empty">★</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== ДАНТЕ ===== -->
+      <div class="col-md-6 col-lg-4 weapon-card" data-character="dante">
+        <span class="weapon-character">Данте</span>
+        <img src="poto/person/Rebellion.jpg" alt="Rebellion">
+        <div class="weapon-info">
+          <h4>Rebellion</h4>
+          <p>Легендарний меч Данте з потужними комбо і трансформацією. Символ його спадщини.</p>
+          <div class="weapon-stats">
+            <div class="stat-item">
+              <span class="stat-label">Швидкість</span>
+              <div class="stat-stars">
+                <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star empty">★</span><span class="star empty">★</span>
+              </div>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Сила</span>
+              <div class="stat-stars">
+                <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star empty">★</span>
+              </div>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Складність</span>
+              <div class="stat-stars">
+                <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star empty">★</span><span class="star empty">★</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4 weapon-card" data-character="dante">
+        <span class="weapon-character">Данте</span>
+        <img src="poto/person/Devil Sword Dante.jpeg" alt="Devil Sword Dante">
+        <div class="weapon-info">
+          <h4>Devil Sword Dante</h4>
+          <p>Перевтілення Rebellion, дозволяє демоничні здібності. Найпотужніша зброя Данте.</p>
+          <div class="weapon-stats">
+            <div class="stat-item">
+              <span class="stat-label">Швидкість</span>
+              <div class="stat-stars">
+                <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star empty">★</span>
+              </div>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Сила</span>
+              <div class="stat-stars">
+                <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+              </div>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Складність</span>
+              <div class="stat-stars">
+                <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star empty">★</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4 weapon-card" data-character="dante">
+        <span class="weapon-character">Данте</span>
+        <img src="poto/person/Balrog.png" alt="Balrog">
+        <div class="weapon-info">
+          <h4>Balrog</h4>
+          <p>Рукавиці та поножі для швидких ближніх ударів і комбо. Можливість перемикання між вогнем та ударом.</p>
+          <div class="weapon-stats">
+            <div class="stat-item">
+              <span class="stat-label">Швидкість</span>
+              <div class="stat-stars">
+                <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+              </div>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Сила</span>
+              <div class="stat-stars">
+                <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star empty">★</span><span class="star empty">★</span>
+              </div>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Складність</span>
+              <div class="stat-stars">
+                <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star empty">★</span><span class="star empty">★</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4 weapon-card" data-character="dante">
+        <span class="weapon-character">Данте</span>
+        <img src="poto/person/Cavaliere.jpg" alt="Cavaliere">
+        <div class="weapon-info">
+          <h4>Cavaliere</h4>
+          <p>Електричний меч-мотоцикл для потужних широких атак. Ідеальний для боротьби з групами ворогів.</p>
+          <div class="weapon-stats">
+            <div class="stat-item">
+              <span class="stat-label">Швидкість</span>
+              <div class="stat-stars">
+                <span class="star">★</span><span class="star">★</span><span class="star empty">★</span><span class="star empty">★</span><span class="star empty">★</span>
+              </div>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Сила</span>
+              <div class="stat-stars">
+                <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+              </div>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Складність</span>
+              <div class="stat-stars">
+                <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star empty">★</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4 weapon-card" data-character="dante">
+        <span class="weapon-character">Данте</span>
+        <img src="poto/person/King Cerberus.jpg" alt="King Cerberus">
+        <div class="weapon-info">
+          <h4>King Cerberus</h4>
+          <p>Трисекційний посох з льодом, вогнем і електрикою. Дозволяє змінювати стиль бою на льоту.</p>
+          <div class="weapon-stats">
+            <div class="stat-item">
+              <span class="stat-label">Швидкість</span>
+              <div class="stat-stars">
+                <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star empty">★</span>
+              </div>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Сила</span>
+              <div class="stat-stars">
+                <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star empty">★</span>
+              </div>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Складність</span>
+              <div class="stat-stars">
+                <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star empty">★</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4 weapon-card" data-character="dante">
+        <span class="weapon-character">Данте</span>
+        <img src="poto/person/Dr. Faust.webp" alt="Dr. Faust">
+        <div class="weapon-info">
+          <h4>Dr. Faust</h4>
+          <p>Капелюх, що використовує червоні сфери як боєприпаси. Ризикована, але високовинагороджуюча зброя.</p>
+          <div class="weapon-stats">
+            <div class="stat-item">
+              <span class="stat-label">Швидкість</span>
+              <div class="stat-stars">
+                <span class="star">★</span><span class="star">★</span><span class="star empty">★</span><span class="star empty">★</span><span class="star empty">★</span>
+              </div>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Сила</span>
+              <div class="stat-stars">
+                <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+              </div>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Складність</span>
+              <div class="stat-stars">
+                <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4 weapon-card" data-character="dante">
+        <span class="weapon-character">Данте</span>
+        <img src="poto/person/Ebony & Ivory.jpg" alt="Ebony & Ivory">
+        <div class="weapon-info">
+          <h4>Ebony & Ivory</h4>
+          <p>Два культові пістолети для швидких і стильних атак з відстані. Висока швидкість стрільби.</p>
+          <div class="weapon-stats">
+            <div class="stat-item">
+              <span class="stat-label">Швидкість</span>
+              <div class="stat-stars">
+                <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+              </div>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Сила</span>
+              <div class="stat-stars">
+                <span class="star">★</span><span class="star">★</span><span class="star empty">★</span><span class="star empty">★</span><span class="star empty">★</span>
+              </div>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Складність</span>
+              <div class="stat-stars">
+                <span class="star">★</span><span class="star">★</span><span class="star empty">★</span><span class="star empty">★</span><span class="star empty">★</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== V ===== -->
+      <div class="col-md-6 col-lg-4 weapon-card" data-character="v">
+        <span class="weapon-character">V</span>
+        <img src="poto/person/Griffon.webp" alt="Griffon">
+        <div class="weapon-info">
+          <h4>Griffon</h4>
+          <p>Демон-ворон для дистанційних електроатак. Спеціалізується на дальній підтримці та атаках з повітря.</p>
+          <div class="weapon-stats">
+            <div class="stat-item">
+              <span class="stat-label">Швидкість</span>
+              <div class="stat-stars">
+                <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star empty">★</span><span class="star empty">★</span>
+              </div>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Сила</span>
+              <div class="stat-stars">
+                <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star empty">★</span><span class="star empty">★</span>
+              </div>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Складність</span>
+              <div class="stat-stars">
+                <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star empty">★</span><span class="star empty">★</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4 weapon-card" data-character="v">
+        <span class="weapon-character">V</span>
+        <img src="poto/person/Shadow.webp" alt="Shadow">
+        <div class="weapon-info">
+          <h4>Shadow</h4>
+          <p>Демон-котяча істота, що формує клинки й шипи. Спеціалізується на ближньому бою та швидких атаках.</p>
+          <div class="weapon-stats">
+            <div class="stat-item">
+              <span class="stat-label">Швидкість</span>
+              <div class="stat-stars">
+                <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star empty">★</span>
+              </div>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Сила</span>
+              <div class="stat-stars">
+                <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star empty">★</span>
+              </div>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Складність</span>
+              <div class="stat-stars">
+                <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star empty">★</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4 weapon-card" data-character="v">
+        <span class="weapon-character">V</span>
+        <img src="poto/person/Nightmare.webp" alt="Nightmare">
+        <div class="weapon-info">
+          <h4>Nightmare</h4>
+          <p>Гігантський голем, що завдає нищівних ударів. Активація вимагає заповнення шкали Devil Trigger.</p>
+          <div class="weapon-stats">
+            <div class="stat-item">
+              <span class="stat-label">Швидкість</span>
+              <div class="stat-stars">
+                <span class="star">★</span><span class="star empty">★</span><span class="star empty">★</span><span class="star empty">★</span><span class="star empty">★</span>
+              </div>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Сила</span>
+              <div class="stat-stars">
+                <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+              </div>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Складність</span>
+              <div class="stat-stars">
+                <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star empty">★</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== ВЕРГІЛІЙ ===== -->
+      <div class="col-md-6 col-lg-4 weapon-card" data-character="vergil">
+        <span class="weapon-character">Вергілій</span>
+        <img src="poto/person/Yamato.webp" alt="Yamato">
+        <div class="weapon-info">
+          <h4>Yamato</h4>
+          <p>Катана, що розрізає простір і викликає телепортацію. Символ могутності Вергілія та його спадщини.</p>
+          <div class="weapon-stats">
+            <div class="stat-item">
+              <span class="stat-label">Швидкість</span>
+              <div class="stat-stars">
+                <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+              </div>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Сила</span>
+              <div class="stat-stars">
+                <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+              </div>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Складність</span>
+              <div class="stat-stars">
+                <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4 weapon-card" data-character="vergil">
+        <span class="weapon-character">Вергілій</span>
+        <img src="poto/person/Mirage_Edge_5SE.webp" alt="Mirage Edge">
+        <div class="weapon-info">
+          <h4>Mirage Edge</h4>
+          <p>Ефірний двійник Rebellion для комбо в стилі Данте. Створює ілюзорні клинки для атак.</p>
+          <div class="weapon-stats">
+            <div class="stat-item">
+              <span class="stat-label">Швидкість</span>
+              <div class="stat-stars">
+                <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star empty">★</span>
+              </div>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Сила</span>
+              <div class="stat-stars">
+                <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star empty">★</span>
+              </div>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Складність</span>
+              <div class="stat-stars">
+                <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star empty">★</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4 weapon-card" data-character="vergil">
+        <span class="weapon-character">Вергілій</span>
+        <img src="poto/person/Beowulf.webp" alt="Beowulf">
+        <div class="weapon-info">
+          <h4>Beowulf</h4>
+          <p>Потужні рукавиці й поножі для ближнього бою. Завдають сліпучі атаки світлом.</p>
+          <div class="weapon-stats">
+            <div class="stat-item">
+              <span class="stat-label">Швидкість</span>
+              <div class="stat-stars">
+                <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star empty">★</span>
+              </div>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Сила</span>
+              <div class="stat-stars">
+                <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+              </div>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Складність</span>
+              <div class="stat-stars">
+                <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star empty">★</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+  <!-- Footer -->
+  <footer class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 mb-4 mb-md-0">
+          <div class="footer-logo">
+            <h3 class="mb-3">Devil May Cry 5</h3>
+            <p class="text-muted">Фан-сайт присвячений культовій грі від Capcom</p>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4 mb-md-0">
+          <div class="footer-links">
+            <h4 class="mb-3">Швидкі посилання</h4>
+            <ul class="list-unstyled">
+              <li class="mb-2"><a href="index.html">Головна</a></li>
+              <li class="mb-2"><a href="development.html">Історія розробки</a></li>
+              <li class="mb-2"><a href="characters.html">Персонажі</a></li>
+              <li class="mb-2"><a href="download.html">Завантажити</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="footer-social">
+            <h4 class="mb-3">Соціальні мережі</h4>
+            <div class="social-icons">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-youtube"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-5 pt-4 footer-bottom">
+        <div class="col-12 text-center">
+          <p class="mb-2 text-muted">&copy; 2025 Фан-сайт Devil May Cry 5. Усі права на гру належать Capcom.</p>
+          <p class="mb-0 text-muted">Цей сайт не пов'язаний з Capcom. Всі товарні знаки є власністю їхніх правовласників.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <script>
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const targetId = this.getAttribute('href');
+        if (targetId === '#' || targetId.startsWith('#!')) return;
+        
+        if (this.getAttribute('target') === '_blank' || this.hasAttribute('download')) return;
+        
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          e.preventDefault();
+          const navbarHeight = document.querySelector('.navbar').offsetHeight;
+          const pageNavHeight = document.querySelector('.page-navigation').offsetHeight;
+          const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navbarHeight - pageNavHeight;
+          
+          window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+          });
+          
+          // Update page navigation active state
+          document.querySelectorAll('.page-navigation .nav-link').forEach(link => {
+            link.classList.remove('active');
+          });
+          this.classList.add('active');
+          
+          history.pushState(null, null, targetId);
+        }
+      });
+    });
+
+    // Create particles
+    function createParticles() {
+      const container = document.getElementById('particles');
+      if (!container) return;
+      
+      const particleCount = 30;
+      
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.classList.add('particle');
+        
+        const size = Math.random() * 4 + 1;
+        const posX = Math.random() * 100;
+        const delay = Math.random() * 5;
+        const duration = Math.random() * 8 + 8;
+        
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        particle.style.left = `${posX}%`;
+        particle.style.animationDelay = `${delay}s`;
+        particle.style.animationDuration = `${duration}s`;
+        
+        container.appendChild(particle);
+      }
+    }
+
+    // Initialize on DOM load
+    document.addEventListener('DOMContentLoaded', function() {
+      createParticles();
+      
+      // Navbar scroll effect
+      const navbar = document.querySelector('.navbar');
+      if (navbar) {
+        window.addEventListener('scroll', function() {
+          if (window.scrollY > 50) {
+            navbar.style.background = 'linear-gradient(135deg, rgba(13, 13, 13, 0.98), rgba(26, 26, 26, 0.95))';
+          } else {
+            navbar.style.background = 'linear-gradient(135deg, rgba(26, 26, 26, 0.95), rgba(13, 13, 13, 0.98))';
+          }
+        });
+      }
+
+      // Intersection Observer for animations
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('section-animate');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -100px 0px' });
+
+      document.querySelectorAll('section').forEach(section => {
+        observer.observe(section);
+      });
+
+      // Weapons filter
+      const filterButtons = document.querySelectorAll('.filter-btn');
+      const weaponCards = document.querySelectorAll('.weapon-card');
+
+      if (filterButtons.length > 0 && weaponCards.length > 0) {
+        filterButtons.forEach(button => {
+          button.addEventListener('click', () => {
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            
+            const filter = button.getAttribute('data-filter');
+            
+            weaponCards.forEach(card => {
+              if (filter === 'all' || card.getAttribute('data-character') === filter) {
+                card.style.display = 'block';
+                setTimeout(() => {
+                  card.classList.add('animate__animated', 'animate__fadeIn');
+                }, 10);
+              } else {
+                card.style.display = 'none';
+                card.classList.remove('animate__animated', 'animate__fadeIn');
+              }
+            });
+          });
+        });
+      }
+
+      // Image error handling
+      document.querySelectorAll('img').forEach(img => {
+        img.addEventListener('error', function() {
+          this.src = 'https://via.placeholder.com/400x300/1a1a1a/c41e3a?text=Image+Not+Found';
+          this.alt = 'Зображення не знайдено';
+        });
+      });
+    });
+
+    // Global error handling
+    window.addEventListener('error', function(e) {
+      console.error('Global error:', e.error);
+    });
+  </script>
+</body>
+</html>

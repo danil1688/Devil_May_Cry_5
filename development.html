@@ -1,0 +1,1254 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Devil May Cry 5 — Історія розробки</title>
+  
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Animate.css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  
+  <style>
+    :root {
+      --primary-red: #c41e3a;
+      --primary-glow: #ff2a4d;
+      --dark-bg: #0d0d0d;
+      --card-bg: #1a1a1a;
+      --text-light: #f8f9fa;
+      --accent-gold: #ffcc00;
+    }
+    
+    body {
+      background-color: var(--dark-bg);
+      color: var(--text-light);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      overflow-x: hidden;
+    }
+    
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 12px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      background: var(--dark-bg);
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background: var(--primary-red);
+      border-radius: 6px;
+      border: 2px solid var(--dark-bg);
+      animation: scrollGlow 2s ease-in-out infinite alternate;
+    }
+    
+    @keyframes scrollGlow {
+      0% { box-shadow: 0 0 5px var(--primary-red); }
+      100% { box-shadow: 0 0 15px var(--primary-glow); }
+    }
+    
+    /* Navigation */
+    .navbar {
+      background: linear-gradient(135deg, rgba(26, 26, 26, 0.95), rgba(13, 13, 13, 0.98)) !important;
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(196, 30, 58, 0.3);
+      box-shadow: 0 2px 20px rgba(196, 30, 58, 0.2);
+      animation: navbarSlideDown 0.8s ease-out;
+    }
+    
+    @keyframes navbarSlideDown {
+      from { transform: translateY(-100%); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    
+    .navbar-brand {
+      color: var(--primary-red) !important;
+      font-weight: bold;
+      text-shadow: 0 0 10px rgba(196, 30, 58, 0.5);
+      position: relative;
+      animation: logoPulse 3s ease-in-out infinite;
+    }
+    
+    @keyframes logoPulse {
+      0%, 100% { transform: scale(1); text-shadow: 0 0 10px rgba(196, 30, 58, 0.5); }
+      50% { transform: scale(1.05); text-shadow: 0 0 20px rgba(255, 42, 77, 0.8); }
+    }
+    
+    .nav-link {
+      color: var(--text-light) !important;
+      position: relative;
+      padding: 8px 15px !important;
+      margin: 0 5px;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+      animation: fadeInRight 0.6s ease-out backwards;
+    }
+    
+    .nav-link:nth-child(1) { animation-delay: 0.1s; }
+    .nav-link:nth-child(2) { animation-delay: 0.2s; }
+    .nav-link:nth-child(3) { animation-delay: 0.3s; }
+    .nav-link:nth-child(4) { animation-delay: 0.4s; }
+    .nav-link:nth-child(5) { animation-delay: 0.5s; }
+    .nav-link:nth-child(6) { animation-delay: 0.6s; }
+    
+    @keyframes fadeInRight {
+      from { opacity: 0; transform: translateX(30px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    
+    .nav-link::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(196, 30, 58, 0.1), rgba(255, 204, 0, 0.1));
+      border-radius: 5px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    .nav-link:hover::before, .nav-link.active::before {
+      opacity: 1;
+    }
+    
+    .nav-link.active, .nav-link:hover {
+      color: var(--primary-red) !important;
+      text-shadow: 0 0 8px rgba(196, 30, 58, 0.7);
+      animation: linkShake 0.3s ease;
+    }
+    
+    @keyframes linkShake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-2px); }
+      75% { transform: translateX(2px); }
+    }
+    
+    /* Hero Section */
+    .hero-section {
+      background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.9)), 
+                  url('https://images.alphacoders.com/990/990728.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      min-height: 80vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      animation: heroZoom 20s linear infinite;
+    }
+    
+    @keyframes heroZoom {
+      0% { background-size: 100%; }
+      50% { background-size: 110%; }
+      100% { background-size: 100%; }
+    }
+    
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at 50% 50%, rgba(196, 30, 58, 0.1) 0%, transparent 50%);
+      animation: pulse-glow 4s ease-in-out infinite;
+    }
+    
+    @keyframes pulse-glow {
+      0%, 100% { opacity: 0.3; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(1.1); }
+    }
+    
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      animation: contentSlideUp 1s ease-out 0.5s backwards;
+    }
+    
+    @keyframes contentSlideUp {
+      from { opacity: 0; transform: translateY(50px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .hero-content h1 {
+      text-shadow: 0 0 20px rgba(196, 30, 58, 0.8);
+      animation: text-glow 2s ease-in-out infinite alternate, titleFloat 6s ease-in-out infinite;
+    }
+    
+    @keyframes text-glow {
+      from { text-shadow: 0 0 20px rgba(196, 30, 58, 0.8); }
+      to { text-shadow: 0 0 30px rgba(255, 42, 77, 1), 0 0 40px rgba(255, 42, 77, 0.6); }
+    }
+    
+    @keyframes titleFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    
+    .hero-content p {
+      animation: fadeInUp 1s ease-out 0.8s backwards;
+    }
+    
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    /* Section Titles */
+    .section-title {
+      color: var(--primary-red);
+      position: relative;
+      padding-bottom: 20px;
+      margin-bottom: 40px;
+      text-shadow: 0 0 10px rgba(196, 30, 58, 0.5);
+      animation: titleSlideIn 0.8s ease-out;
+    }
+    
+    @keyframes titleSlideIn {
+      from { opacity: 0; transform: translateX(-50px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 80px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary-red), var(--accent-gold));
+      box-shadow: 0 0 10px rgba(196, 30, 58, 0.5);
+      animation: lineExtend 1s ease-out 0.5s backwards;
+    }
+    
+    @keyframes lineExtend {
+      from { width: 0; opacity: 0; }
+      to { width: 80px; opacity: 1; }
+    }
+    
+    .text-center .section-title::after {
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    
+    /* Cards */
+    .feature-card, .character-card, .fact-card, .award-card {
+      background: linear-gradient(145deg, #1e1e1e, #2a2a2a);
+      border-radius: 15px;
+      padding: 25px;
+      height: 100%;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(196, 30, 58, 0.2);
+      position: relative;
+      overflow: hidden;
+      animation: cardFloat 6s ease-in-out infinite;
+    }
+    
+    @keyframes cardFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+    
+    .feature-card::before, .character-card::before, .fact-card::before, .award-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(196, 30, 58, 0.1), transparent);
+      transition: left 0.5s;
+    }
+    
+    .feature-card:hover::before, .character-card:hover::before, .fact-card:hover::before, .award-card:hover::before {
+      left: 100%;
+    }
+    
+    .feature-card:hover, .character-card:hover, .fact-card:hover, .award-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      border-color: rgba(196, 30, 58, 0.5);
+      box-shadow: 0 10px 30px rgba(196, 30, 58, 0.3);
+      animation: cardHover 0.3s ease;
+    }
+    
+    @keyframes cardHover {
+      0% { transform: translateY(-10px) scale(1); }
+      50% { transform: translateY(-10px) scale(1.05); }
+      100% { transform: translateY(-10px) scale(1.02); }
+    }
+    
+    /* Feature Icons */
+    .feature-icon {
+      color: var(--primary-red);
+      font-size: 3rem;
+      margin-bottom: 20px;
+      text-shadow: 0 0 15px rgba(196, 30, 58, 0.7);
+      transition: all 0.3s ease;
+      animation: iconSpin 8s linear infinite;
+    }
+    
+    @keyframes iconSpin {
+      0% { transform: rotate(0deg) scale(1); }
+      50% { transform: rotate(180deg) scale(1.1); }
+      100% { transform: rotate(360deg) scale(1); }
+    }
+    
+    .feature-card:hover .feature-icon {
+      transform: scale(1.2) rotate(5deg);
+      color: var(--primary-glow);
+      text-shadow: 0 0 20px rgba(255, 42, 77, 1);
+      animation: iconBounce 0.5s ease;
+    }
+    
+    @keyframes iconBounce {
+      0%, 20%, 60%, 100% { transform: scale(1.2) rotate(5deg); }
+      40% { transform: scale(1.3) rotate(10deg); }
+      80% { transform: scale(1.25) rotate(0deg); }
+    }
+    
+    /* Character Cards */
+    .character-image {
+      height: 250px;
+      overflow: hidden;
+      border-radius: 10px 10px 0 0;
+      position: relative;
+    }
+    
+    .character-image::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 50%;
+      background: linear-gradient(transparent, rgba(13, 13, 13, 0.9));
+    }
+    
+    .character-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+      animation: characterFloat 8s ease-in-out infinite;
+    }
+    
+    @keyframes characterFloat {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-5px) scale(1.02); }
+    }
+    
+    .character-card:hover .character-image img {
+      transform: scale(1.1);
+      animation: characterHover 0.5s ease;
+    }
+    
+    @keyframes characterHover {
+      0% { transform: scale(1.1); }
+      50% { transform: scale(1.15); }
+      100% { transform: scale(1.1); }
+    }
+    
+    /* Timeline */
+    .timeline {
+      position: relative;
+      max-width: 1200px;
+      margin: 0 auto;
+      animation: timelineAppear 1s ease-out;
+    }
+    
+    @keyframes timelineAppear {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    
+    .timeline::after {
+      content: '';
+      position: absolute;
+      width: 6px;
+      background: linear-gradient(to bottom, var(--primary-red), var(--accent-gold));
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      margin-left: -3px;
+      border-radius: 3px;
+      box-shadow: 0 0 10px rgba(196, 30, 58, 0.5);
+      animation: timelineGrow 1.5s ease-out;
+    }
+    
+    @keyframes timelineGrow {
+      from { height: 0; }
+      to { height: 100%; }
+    }
+    
+    .timeline-item {
+      padding: 15px 40px;
+      position: relative;
+      width: 50%;
+      box-sizing: border-box;
+      animation: timelineItemSlide 0.8s ease-out backwards;
+    }
+    
+    .timeline-item:nth-child(1) { animation-delay: 0.2s; }
+    .timeline-item:nth-child(2) { animation-delay: 0.4s; }
+    .timeline-item:nth-child(3) { animation-delay: 0.6s; }
+    .timeline-item:nth-child(4) { animation-delay: 0.8s; }
+    .timeline-item:nth-child(5) { animation-delay: 1.0s; }
+    
+    @keyframes timelineItemSlide {
+      from { opacity: 0; transform: translateX(-50px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    
+    .timeline-item:nth-child(odd) {
+      left: 0;
+    }
+    
+    .timeline-item:nth-child(even) {
+      left: 50%;
+      animation-name: timelineItemSlideRight;
+    }
+    
+    @keyframes timelineItemSlideRight {
+      from { opacity: 0; transform: translateX(50px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    
+    .timeline-item::after {
+      content: '';
+      position: absolute;
+      width: 25px;
+      height: 25px;
+      background: var(--primary-red);
+      border: 4px solid var(--dark-bg);
+      top: 20px;
+      border-radius: 50%;
+      z-index: 1;
+      box-shadow: 0 0 15px rgba(196, 30, 58, 0.8);
+      animation: dotPulse 2s ease-in-out infinite;
+    }
+    
+    @keyframes dotPulse {
+      0%, 100% { transform: scale(1); box-shadow: 0 0 15px rgba(196, 30, 58, 0.8); }
+      50% { transform: scale(1.2); box-shadow: 0 0 25px rgba(255, 42, 77, 1); }
+    }
+    
+    .timeline-item:nth-child(odd)::after {
+      right: -12px;
+    }
+    
+    .timeline-item:nth-child(even)::after {
+      left: -12px;
+    }
+    
+    .timeline-content {
+      padding: 25px;
+      background: linear-gradient(145deg, #1e1e1e, #2a2a2a);
+      border-radius: 15px;
+      border: 1px solid rgba(196, 30, 58, 0.3);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      animation: contentFloat 4s ease-in-out infinite;
+    }
+    
+    @keyframes contentFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-3px); }
+    }
+    
+    .timeline-content::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 5px;
+      height: 100%;
+      background: linear-gradient(to bottom, var(--primary-red), var(--accent-gold));
+    }
+    
+    .timeline-content:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(196, 30, 58, 0.3);
+      animation: timelineHover 0.3s ease;
+    }
+    
+    @keyframes timelineHover {
+      0% { transform: translateY(-5px) scale(1); }
+      50% { transform: translateY(-5px) scale(1.02); }
+      100% { transform: translateY(-5px) scale(1); }
+    }
+    
+    .timeline-year {
+      font-weight: 700;
+      color: var(--primary-red);
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+      text-shadow: 0 0 8px rgba(196, 30, 58, 0.5);
+      animation: yearGlow 3s ease-in-out infinite;
+    }
+    
+    /* Award Cards */
+    .award-card {
+      text-align: center;
+    }
+    
+    .award-icon {
+      font-size: 2.5rem;
+      color: var(--accent-gold);
+      margin-bottom: 15px;
+      text-shadow: 0 0 10px rgba(255, 204, 0, 0.5);
+      animation: awardShine 3s ease-in-out infinite;
+    }
+    
+    @keyframes awardShine {
+      0%, 100% { transform: scale(1); text-shadow: 0 0 10px rgba(255, 204, 0, 0.5); }
+      50% { transform: scale(1.1); text-shadow: 0 0 20px rgba(255, 204, 0, 0.8); }
+    }
+    
+    /* Footer with Burning Effect */
+    footer {
+      background: linear-gradient(135deg, #1a1a1a, #0d0d0d);
+      border-top: 2px solid var(--primary-red);
+      position: relative;
+      overflow: hidden;
+      animation: footerSlideUp 1s ease-out;
+    }
+    
+    @keyframes footerSlideUp {
+      from { opacity: 0; transform: translateY(50px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--primary-red), var(--accent-gold), var(--primary-red), transparent);
+      animation: burning 3s linear infinite;
+    }
+    
+    @keyframes burning {
+      0% { background-position: -200px 0; }
+      100% { background-position: 200px 0; }
+    }
+    
+    .footer-logo h3 {
+      color: var(--primary-red);
+      text-shadow: 0 0 10px rgba(196, 30, 58, 0.7);
+      animation: footerLogoPulse 4s ease-in-out infinite;
+    }
+    
+    @keyframes footerLogoPulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+    
+    .footer-links a {
+      color: #aaa;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      position: relative;
+      padding-left: 0;
+      display: inline-block;
+      animation: linkFadeIn 0.6s ease-out backwards;
+    }
+    
+    .footer-links a:nth-child(1) { animation-delay: 0.1s; }
+    .footer-links a:nth-child(2) { animation-delay: 0.2s; }
+    .footer-links a:nth-child(3) { animation-delay: 0.3s; }
+    .footer-links a:nth-child(4) { animation-delay: 0.4s; }
+    
+    @keyframes linkFadeIn {
+      from { opacity: 0; transform: translateX(-20px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    
+    .footer-links a::before {
+      content: '▶';
+      position: absolute;
+      left: -15px;
+      opacity: 0;
+      color: var(--primary-red);
+      transition: all 0.3s ease;
+    }
+    
+    .footer-links a:hover {
+      color: var(--primary-red);
+      padding-left: 15px;
+      text-shadow: 0 0 8px rgba(196, 30, 58, 0.5);
+      animation: linkShake 0.3s ease;
+    }
+    
+    /* Burning Social Icons */
+    .social-icons {
+      display: flex;
+      gap: 15px;
+    }
+    
+    .social-icons a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, #2a2a2a, #1f1f1f);
+      border-radius: 50%;
+      color: var(--text-light);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(196, 30, 58, 0.3);
+      animation: socialIconFloat 6s ease-in-out infinite;
+    }
+    
+    @keyframes socialIconFloat {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-5px) rotate(5deg); }
+    }
+    
+    .social-icons a:nth-child(1) { animation-delay: 0s; }
+    .social-icons a:nth-child(2) { animation-delay: 0.2s; }
+    .social-icons a:nth-child(3) { animation-delay: 0.4s; }
+    .social-icons a:nth-child(4) { animation-delay: 0.6s; }
+    
+    .social-icons a::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(196, 30, 58, 0.4), transparent);
+      transition: left 0.5s;
+    }
+    
+    .social-icons a:hover {
+      background: linear-gradient(135deg, var(--primary-red), #a01830);
+      color: white;
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(196, 30, 58, 0.6);
+      border-color: var(--primary-glow);
+      animation: socialIconHover 0.5s ease;
+    }
+    
+    @keyframes socialIconHover {
+      0% { transform: translateY(-5px) scale(1); }
+      50% { transform: translateY(-5px) scale(1.2); }
+      100% { transform: translateY(-5px) scale(1); }
+    }
+    
+    .social-icons a:hover::before {
+      left: 100%;
+    }
+    
+    .footer-bottom {
+      border-top: 1px solid rgba(196, 30, 58, 0.3);
+      position: relative;
+      animation: footerBottomFade 1s ease-out 0.5s backwards;
+    }
+    
+    @keyframes footerBottomFade {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    .footer-bottom::before {
+      content: '';
+      position: absolute;
+      top: -1px;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--primary-red), transparent);
+    }
+    
+    /* Particle Background Effect */
+    .particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+    }
+    
+    .particle {
+      position: absolute;
+      background: var(--primary-red);
+      border-radius: 50%;
+      opacity: 0.3;
+      animation: float 6s infinite linear;
+    }
+    
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.3;
+      }
+      90% {
+        opacity: 0.3;
+      }
+      100% {
+        transform: translateY(-100px) rotate(360deg);
+        opacity: 0;
+      }
+    }
+    
+    /* Section Entrance Animations */
+    .section-animate {
+      animation: sectionSlideUp 0.8s ease-out;
+    }
+    
+    @keyframes sectionSlideUp {
+      from { opacity: 0; transform: translateY(50px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    /* Story Image */
+    .story-image {
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+      animation: imageFloat 6s ease-in-out infinite;
+    }
+    
+    @keyframes imageFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+    
+    .story-image img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    
+    .story-image:hover img {
+      transform: scale(1.05);
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .timeline::after {
+        left: 31px;
+      }
+      
+      .timeline-item {
+        width: 100%;
+        padding-left: 70px;
+        padding-right: 25px;
+      }
+      
+      .timeline-item:nth-child(even) {
+        left: 0;
+      }
+      
+      .timeline-item::after {
+        left: 18px;
+      }
+      
+      .hero-content h1 {
+        font-size: 2.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Particles Background -->
+  <div class="particles" id="particles"></div>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <i class="fas fa-skull-crossbones me-2"></i>Devil May Cry 5
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html"><i class="fas fa-home me-1"></i> Головна</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="development.html"><i class="fas fa-code me-1"></i> Історія</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="characters.html" id="charactersDropdown" role="button" data-bs-toggle="dropdown">
+              <i class="fas fa-users me-1"></i> Персонажі
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="characters.html#list-characters">Список персонажів</a></li>
+              <li><a class="dropdown-item" href="characters.html#character-stories">Історії персонажів</a></li>
+              <li><a class="dropdown-item" href="characters.html#character-weapons">Зброя персонажів</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="download.html"><i class="fas fa-download me-1"></i> Завантажити</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="company.html"><i class="fas fa-building me-1"></i> Компанія</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="reviews.html"><i class="fas fa-comments me-1"></i> Відгуки</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="container">
+      <div class="row justify-content-center text-center">
+        <div class="col-lg-8">
+          <div class="hero-content">
+            <h1 class="display-4 fw-bold mb-4">Історія розробки Devil May Cry 5</h1>
+            <p class="lead mb-4">
+              Від перших концепт-артів до фінального релізу — досліджуйте повну історію створення 
+              однієї з найвизначніших ігор в жанрі екшен. Дізнайтеся про технологічні інновації, 
+              творчі рішення та ключові моменти розробки, які сформували Devil May Cry 5.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Початок розробки -->
+  <section id="story" class="py-5 section-animate">
+    <div class="container">
+      <h2 class="section-title">Початок розробки</h2>
+      <div class="row align-items-center">
+        <div class="col-lg-6 mb-4 mb-lg-0">
+          <p class="lead">
+            Робота над Devil May Cry 5 почалася у 2015 році, невдовзі після виходу DmC: Devil May Cry 
+            від Ninja Theory. Capcom вирішила повернутися до оригінальної хронології серії та 
+            продовжити історію Данте та Вергілія. Головним режисером проекту став Хідеакі Іцуно, 
+            який раніше працював над Devil May Cry 4 та Dragon's Dogma.
+          </p>
+          <p>
+            Команда поставила собі за мету створити гру, яка поєднуватиме класичний геймплей 
+            Devil May Cry з сучасними технологіями. Вони вибрали рушій RE Engine, який вже 
+            довів свою ефективність у Resident Evil 7, що дозволило досягти високої якості 
+            графіки та плавної продуктивності.
+          </p>
+        </div>
+        <div class="col-lg-6">
+          <div class="story-image">
+            <img src="poto/development/Початок розробки.png" alt="Ранні концепти Devil May Cry 5">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Хронологія розробки -->
+  <section class="py-5 bg-dark section-animate">
+    <div class="container">
+      <h2 class="section-title text-center">Хронологія розробки</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <div class="timeline-year">2015</div>
+            <h3>Початок пре-продакшену</h3>
+            <p>Створення перших концепт-артів, розробка основної ідеї сюжету, робота над дизайном персонажів.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <div class="timeline-year">2016</div>
+            <h3>Активна розробка</h3>
+            <p>Адаптація RE Engine під потреби Devil May Cry 5, створення прототипів бойової системи, mocap-сесії з акторами.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <div class="timeline-year">2017</div>
+            <h3>Удосконалення геймплею</h3>
+            <p>Балансування бойової системи, створення рівнів, запис музики, розробка системи Devil Breaker для Неро.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <div class="timeline-year">2018</div>
+            <h3>Фінальний етап</h3>
+            <p>Полірування гри, оптимізація продуктивності, альфа- та бета-тестування, підготовка до релізу.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <div class="timeline-year">2019</div>
+            <h3>Реліз та післярелізна підтримка</h3>
+            <p>Вихід гри 8 березня 2019 року, випуск DLC, виправлення багів, додавання нових функцій.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Технології та інновації -->
+  <section class="py-5 section-animate">
+    <div class="container">
+      <h2 class="section-title text-center">Технології та інновації</h2>
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-4">
+          <div class="feature-card text-center">
+            <div class="feature-icon">
+              <i class="fas fa-cogs"></i>
+            </div>
+            <h3>RE Engine</h3>
+            <p>Перша гра серії на новому рушії Capcom, що забезпечив фотореалістичну графіку та високу продуктивність.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="feature-card text-center">
+            <div class="feature-icon">
+              <i class="fas fa-video"></i>
+            </div>
+            <h3>Motion Capture</h3>
+            <p>Використання передових технологій захвату руху для реалістичної анімації персонажів.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="feature-card text-center">
+            <div class="feature-icon">
+              <i class="fas fa-paint-brush"></i>
+            </div>
+            <h3>Фотограмметрія</h3>
+            <p>Створення деталізованих текстур шляхом сканування реальних об'єктів та матеріалів.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="feature-card text-center">
+            <div class="feature-icon">
+              <i class="fas fa-robot"></i>
+            </div>
+            <h3>Devil Breaker System</h3>
+            <p>Інноваційна система змінних механічних рук для Неро з унікальними здібностями.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="feature-card text-center">
+            <div class="feature-icon">
+              <i class="fas fa-music"></i>
+            </div>
+            <h3>Динамічний саундтрек</h3>
+            <p>Музика, яка змінюється в реальному часі залежно від стилю бою гравця.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="feature-card text-center">
+            <div class="feature-icon">
+              <i class="fas fa-users"></i>
+            </div>
+            <h3>Три персонажі</h3>
+            <p>Унікальні ігрові механіки для кожного з трьох головних героїв гри.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ключові розробники -->
+  <section class="py-5 bg-dark section-animate">
+    <div class="container">
+      <h2 class="section-title text-center">Ключові розробники</h2>
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-3">
+          <div class="character-card">
+            <div class="character-image">
+              <img src="poto/development/Хідеакі Іцуно.jpeg" alt="Хідеакі Іцуно">
+            </div>
+            <div class="p-4">
+              <h3>Хідеакі Іцуно</h3>
+              <p class="fw-bold text-primary">Режисер гри</p>
+              <p>Відповідав за загальне керівництво проектом, бойову систему та ігровий дизайн. Ранее працював над Devil May Cry 4.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="character-card">
+            <div class="character-image">
+              <img src="poto/development/Маттю Вокер.jpg" alt="Маттю Вокер">
+            </div>
+            <div class="p-4">
+              <h3>Маттю Вокер</h3>
+              <p class="fw-bold text-primary">Продюсер</p>
+              <p>Координував розробку, забезпечував комунікацію між японською та західною аудиторіями.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="character-card">
+            <div class="character-image">
+              <img src="poto/development/Кота Судзукі.jpg" alt="Кота Судзукі">
+            </div>
+            <div class="p-4">
+              <h3>Кота Судзукі</h3>
+              <p class="fw-bold text-primary">Композитор</p>
+              <p>Створив саундтрек гри, включаючи культові вокальні треки для босів та динамічну систему музики.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="character-card">
+            <div class="character-image">
+              <img src="poto/development/Даїсуке Моріура.jpg" alt="Даїсуке Моріура">
+            </div>
+            <div class="p-4">
+              <h3>Даїсуке Моріура</h3>
+              <p class="fw-bold text-primary">Художник-концептуаліст</p>
+              <p>Відповідав за візуальний дизайн персонажів, демонів та ігрового середовища.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Цікаві факти -->
+  <section class="py-5 section-animate">
+    <div class="container">
+      <h2 class="section-title text-center">Цікаві факти про розробку</h2>
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-4">
+          <div class="fact-card">
+            <div class="feature-icon">
+              <i class="fas fa-user"></i>
+            </div>
+            <h3>Моделі персонажів</h3>
+            <p>Обличчя Данте та Неро були змодельовані на основі реальних акторів, чиї риси об'єднали з традиційним дизайном персонажів.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="fact-card">
+            <div class="feature-icon">
+              <i class="fas fa-running"></i>
+            </div>
+            <h3>Запис рухів</h3>
+            <p>Для анімації бою були запрошені професійні каскадери та майстри бойових мистецтв.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="fact-card">
+            <div class="feature-icon">
+              <i class="fas fa-music"></i>
+            </div>
+            <h3>Музика</h3>
+            <p>Вокальні треки для битв з босами створювалися спеціально під кожного персонажа та його стиль бою.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="fact-card">
+            <div class="feature-icon">
+              <i class="fas fa-user-secret"></i>
+            </div>
+            <h3>Секретний персонаж</h3>
+            <p>Вергілій спочатку не планувався як ігровий персонаж, але був доданий у якості DLC через попит гравців.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="fact-card">
+            <div class="feature-icon">
+              <i class="fas fa-motorcycle"></i>
+            </div>
+            <h3>Мотоцикл-меч</h3>
+            <p>Ідея меча-мотоцикла Cavaliere для Данте виникла, коли розробники побачили, як легко розбирається на частини справжній мотоцикл.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="fact-card">
+            <div class="feature-icon">
+              <i class="fas fa-undo-alt"></i>
+            </div>
+            <h3>Відмова від відкритого світу</h3>
+            <p>Спочатку планувалося зробити гру з відкритим світом, але розробники вирішили повернутися до класичного лінійного дизайну рівнів.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Нагороди -->
+  <section class="py-5 bg-dark section-animate">
+    <div class="container">
+      <h2 class="section-title text-center">Нагороди та визнання</h2>
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-3">
+          <div class="award-card">
+            <div class="award-icon">
+              <i class="fas fa-trophy"></i>
+            </div>
+            <h3>Best Action Game</h3>
+            <p>The Game Awards 2019</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="award-card">
+            <div class="award-icon">
+              <i class="fas fa-volume-up"></i>
+            </div>
+            <h3>Best Audio Design</h3>
+            <p>Japan Game Awards 2019</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="award-card">
+            <div class="award-icon">
+              <i class="fas fa-desktop"></i>
+            </div>
+            <h3>Best PC Game</h3>
+            <p>IGN Awards 2019</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="award-card">
+            <div class="award-icon">
+              <i class="fas fa-user"></i>
+            </div>
+            <h3>Best Character (Данте)</h3>
+            <p>GamesRadar+ Awards 2019</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 mb-4 mb-md-0">
+          <div class="footer-logo">
+            <h3 class="mb-3">Devil May Cry 5</h3>
+            <p class="text-muted">Фан-сайт присвячений культовій грі від Capcom</p>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4 mb-md-0">
+          <div class="footer-links">
+            <h4 class="mb-3">Швидкі посилання</h4>
+            <ul class="list-unstyled">
+              <li class="mb-2"><a href="index.html">Головна</a></li>
+              <li class="mb-2"><a href="development.html">Історія розробки</a></li>
+              <li class="mb-2"><a href="characters.html">Персонажі</a></li>
+              <li class="mb-2"><a href="download.html">Завантажити</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="footer-social">
+            <h4 class="mb-3">Соціальні мережі</h4>
+            <div class="social-icons">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-youtube"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-5 pt-4 footer-bottom">
+        <div class="col-12 text-center">
+          <p class="mb-2 text-muted">&copy; 2025 Фан-сайт Devil May Cry 5. Усі права на гру належать Capcom.</p>
+          <p class="mb-0 text-muted">Цей сайт не пов'язаний з Capcom. Всі товарні знаки є власністю їхніх правовласників.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <script>
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 80,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+    
+    // Create particles
+    function createParticles() {
+      const container = document.getElementById('particles');
+      const particleCount = 50;
+      
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.classList.add('particle');
+        
+        const size = Math.random() * 5 + 2;
+        const posX = Math.random() * 100;
+        const delay = Math.random() * 10;
+        const duration = Math.random() * 10 + 10;
+        
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        particle.style.left = `${posX}%`;
+        particle.style.animationDelay = `${delay}s`;
+        particle.style.animationDuration = `${duration}s`;
+        
+        container.appendChild(particle);
+      }
+    }
+    
+    // Initialize particles
+    createParticles();
+    
+    // Navbar background on scroll
+    window.addEventListener('scroll', function() {
+      const navbar = document.querySelector('.navbar');
+      if (window.scrollY > 50) {
+        navbar.style.background = 'linear-gradient(135deg, rgba(13, 13, 13, 0.98), rgba(26, 26, 26, 0.95))';
+      } else {
+        navbar.style.background = 'linear-gradient(135deg, rgba(26, 26, 26, 0.95), rgba(13, 13, 13, 0.98))';
+      }
+    });
+    
+    // Intersection Observer for section animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('section-animate');
+        }
+      });
+    }, observerOptions);
+    
+    // Observe all sections
+    document.querySelectorAll('section').forEach(section => {
+      observer.observe(section);
+    });
+  </script>
+</body>
+</html>
